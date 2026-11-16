@@ -1,0 +1,48 @@
+- name: enable nginx 1.26 
+  command: dnf module enable nginx:1.26 -y
+
+- name: install nginx
+  dnf:
+    name: install nginx
+    state: present
+
+- name: start enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Find all contents inside the directory
+  ansible.builtin.find:
+    paths: /usr/share/nginx/html/
+    recurse: false      # Keeps it fast by only selecting top-level items inside the folder
+    hidden: true        # Includes hidden files (e.g., .htaccess)
+    file_type: any      # Finds files, directories, and symlinks
+    register: directory_content
+
+- name: print directory content
+  debug:
+    msg: "{{ directory_content }}"
+
+- name: Remove all found contents
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ directory_content.files }}"
+
+- name: download frontend application
+  get_url:
+    url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/frontend-v4.zip
+    dest: /tmp/frontend.zip
+
+- name: unzip frontend
+  unarchive:
+    src: /tmp/frontend.zip
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+
+- name: copy roboshop config
+  template:
+    src: roboshop.service.j2
+    dest: /etc/systemd/system/payment.service
+
