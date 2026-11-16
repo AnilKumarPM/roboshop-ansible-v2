@@ -1,5 +1,5 @@
 - name: configure {{ component }}
-  hosts: {{  components }}
+  hosts: "{{  components }}"
   become: yes
-  roles: 
-  - {{  components }}
+  roles:  # by default it checks in roles folder in current folder
+  - "{{  components }}"
