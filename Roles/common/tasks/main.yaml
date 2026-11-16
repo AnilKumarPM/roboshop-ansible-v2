@@ -1,3 +1,0 @@
-- name: this is common role main task
-  debug: 
-    msg: "Hi from common role"
