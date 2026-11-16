@@ -5,3 +5,13 @@ ansible_password: "{{ vault_ansible_password }}"
 mysql_root_password: "{{ vault_mysql_root_password }}"
 rabbitmq_user: "{{ vault_rabbitmq_user }}"
 rabbitmq_password: "{{ vault_rabbitmq_password }}"
+
+mongodb_host: mongodb.aaws.online
+redis_host: redis.aaws.online
+mysql_host: mysql.aaws.online
+rabbitmq_host: rabbitmq.aaws.online
+catalogue_host: catalogue.aaws.online
+cart_host: cart.aaws.online
+user_host: user.aaws.online
+shipping_host: shipping.aaws.online
+payment_host: payment.aaws.online
