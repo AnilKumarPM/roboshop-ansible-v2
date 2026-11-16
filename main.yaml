@@ -2,4 +2,4 @@
   hosts: {{  components }}
   become: yes
   roles: 
-  -
+  - {{  components }}
