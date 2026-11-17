@@ -8,17 +8,17 @@
     comment: "roboshop system user"
 
 - name: remove existing app directory
-  file: 
+  file:
     path: /app
     state: absent
 
 - name: remove {{ component }}.zip
-  file: 
+  file:
     path: /tmp/{{ component }}.zip
     state: absent
 
 - name: create app directory
-  file: 
+  file:
     path: /app
     state: directory
 
@@ -31,4 +31,4 @@
   unarchive:
     src: /tmp/{{ component }}.zip
     dest: /app
-    remote_src: yes    
+    remote_src: yes

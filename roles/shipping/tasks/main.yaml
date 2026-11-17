@@ -1,5 +1,5 @@
 - name: application setup
-  include_role: 
+  include_role:
     name: common
     tasks_from: app-setup
 
@@ -8,7 +8,7 @@
     name: common
     tasks_from: java
 
-- name: systemd-setup
+- name: systemd setup
   include_role:
     name: common
     tasks_from: systemd-setup
@@ -36,7 +36,6 @@
   shell: mysql -h "{{ mysql_host }}" -u root -p{{ mysql_root_password }} < /app/db/app-user.sql
   tags:
   - mysql
-
 
 - name: restart application
   include_role:
